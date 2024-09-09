@@ -1,4 +1,5 @@
 console.log("Starting execution");
+console.log("Hello, Steven")
 
 
 // Variable declarations and reassignments
