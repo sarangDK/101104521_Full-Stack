@@ -10,13 +10,13 @@ const port = process.env.PORT || 8082;
 //Create Web Server using CORE API
 const server = http.createServer((req, res) => {
     if (req.method !== 'GET') {
-        res.end(`{"error": "${http.STATUS_CODES[405]}"}`)
+        return res.end(`{"error": "${http.STATUS_CODES[405]}"}`)
     } else {
         if (req.url === '/') {
             //TODO - Display message "<h1>Welcome to Lab Exercise 03</h1>"
             res.statusCode = 200; 
             res.setHeader('Content-Type', 'text/plain'); 
-            res.end("<h1>Welcome to Lab Exercise 03</h1>");
+           return  res.end("<h1>Welcome to Lab Exercise 03</h1>");
         }
 
         if (req.url === '/employee') {
