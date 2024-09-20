@@ -16,12 +16,12 @@ const server = http.createServer((req, res) => {
             //TODO - Display message "<h1>Welcome to Lab Exercise 03</h1>"
             res.statusCode = 200; 
             res.setHeader('Content-Type', 'text/plain'); 
-           return  res.end("<h1>Welcome to Lab Exercise 03</h1>");
+            return res.end("<h1>Welcome to Lab Exercise 03</h1>");
         }
 
         if (req.url === '/employee') {
             //TODO - Display all details for employees in JSON format
-            return res.end(JSON.stringify(employees));
+             return res.end(JSON.stringify(employees));
         }
 
         if (req.url === '/employee/names') {
