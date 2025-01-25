@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- coming from node modules  -->
+  <script src="/socket.io/socket.io.js"></script> 
+  
+  <title>Document</title>
+</head>
+<body>
+    <h1>Week 3 | NodeJS Socket Example</h1>
+    <form id="chatForm" onsubmit="sendMessage(); return false;">
+        <input type="text" id="message" name="message" placeholder="Enter your message" />
+        <button type="submit">Send</button>
+    </form>
+
+    <a href="/views/group_chat.html">Group Chat</a>
+  </br>
+  <h4 id="socketID"></h4>
+  <input type="text" id="message" name="message" placeholder="Enter your message" />
+    <div id="container" name="container">
+      <!-- Chat messages will be displayed here -->
+       <h1><b>Chat History</b></h1>
+    </div>
+
+
+    <script>
+      // when we refresh the page, we are creating a new socket connection
+      const io_client = io();
+
+      io_client.on("connect", () => {
+        console.log("connected to server");
+        io_client.send("Hi"); // Send event to server
+      });
+
+      io_client.on("message", (data) => {
+        console.log(`Message from Server: ${data}`);
+        const container = document.getElementById('container');
+        const msg = `<p><b>${data.clientId}</b>: ${data.message}</p>`;
+        container.innerHTML += msg;
+      });
+
+      // function to send message to the server
+      function sendMessage() {
+        const txtmessage = document.getElementById('message');
+        const data = {
+          clientId: io_client.id,
+          message: txtmessage.value,
+          datasent: new Date().toISOString()
+        };
+        io_client.emit("chat_message", data);
+
+        // Add the sent message to the container
+        const container = document.getElementById('container');
+        const msg = `<p><b>${data.clientId}</b>: ${data.message}</p>`;
+        container.innerHTML += msg;
+
+        txtmessage.value = ''; // Clear the input field after sending the message
+      }
+    </script>
+
+ 
+
+
+</body>
+</html>
