@@ -30,7 +30,7 @@ app.get("/group", (req, res) => {
 
 });
 // create a new instance of socket.io by passing the server object
-const io_server = socketio(server); 
+const io_8server = socketio(server); 
 // listen for connection event
 io_server.on("connection", (socket) => {
   console.log(`New Socket: ${socket.id}`)

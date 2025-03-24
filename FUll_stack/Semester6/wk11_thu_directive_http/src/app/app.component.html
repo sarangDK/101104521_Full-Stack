@@ -1,0 +1,64 @@
+<h1>Hello, {{title}}</h1>
+<p>Congratulations! Your app is running. </p>
+
+<div>
+  <h2>For loop Example</h2>
+
+  @for (item of items; track item.title) {
+    <a [href] = "item.link" target="_blank" rel="noopener">
+      <p>{{item.title}}</p>
+    </a>
+  } @empty {
+    <p>No items found</p>
+  }
+
+
+  <h2>NG For Example</h2>
+  <a *ngFor="let item of items" [href]="item.link" target="_blank" rel="noopener">
+    <p>{{item.title}}</p>
+  </a>
+
+
+  <h2>If Example</h2>
+  @if(isAdmin) {
+    <h3>Admin User</h3>
+  }@else {
+    <h3>Normal User</h3>
+  }
+  <h2>*ngIf Examples</h2>
+  <h3 *ngIF="!isAdmin; else noAdmin">Admin User</h3>
+
+  <ng-template #noAdmin>
+    <h3>Normal User</h3>
+  </ng-template>
+
+
+  <h2>Switch Case</h2>
+  @switch (dayNo) {
+    @case (1) {
+      <h3>Sunday</h3>
+    }
+    @case (2) {
+      <h3>Monday</h3>
+    }
+    @case (3) {
+      <h3>Tuesday</h3>
+    }
+    @default {
+      <h3>Invalid Day</h3>
+    }
+  }
+
+  <h2>*ngSwitch Example</h2>
+  <div [ngSwitch]="dayNo">
+    <h3 *ngSwitchCase="1">Sunday</h3>
+    <h3 *ngSwitchCase="1">Monday</h3>
+    <h3 *ngSwitchCase="3">Tuesday</h3>
+    <h3 *ngSwitchDefault>Invalid Day</h3>
+
+
+  </div>
+
+</div>
+
+<router-outlet></router-outlet>
